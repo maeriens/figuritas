@@ -1,0 +1,32 @@
+.modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #FFF;
+    width: 60%;
+    padding: 1rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #FFF;
+}
+
+.modal-footer button {
+    margin: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: 500;
+    background-color: #63A194;
+  }
