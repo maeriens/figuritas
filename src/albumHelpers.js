@@ -21,26 +21,30 @@ const groups = {
   H: ['por', 'gha', 'uru', 'kor']
 };
 
-const fwcGroups = [
+export const fwcGroups = [
   { team: 'index', start: 0, end: 8 },
   { team: 'sta', start: 8, end: 19 },
   { team: 'chp', start: 19, end: 29 }
 ];
+
+export const editTeamFwc = (teamToSearch, allStickers, newStickers) => {
+  const { start } = fwcGroups.find(e => e.team === teamToSearch);
+
+  allStickers.splice(start, newStickers.length, ...newStickers);
+  return allStickers;
+}
 
 const teams = Object.values(groups).map(val => [...val]).flat();
 
 const generateTeamStickers = (total = 19) => [...new Array(total)].map((_, i) => ({ number: i + 1, need: true, swap: false }));
 
 // FWC has the 00 sticker included
-const teamFwc = [...new Array(30)].map((_, i) => ({ number: i, need: true, swap: false }));
-const fwcData = fwcGroups.map(({ team, start, end }) => ({ team, stickers: teamFwc.slice(start, end) }));
+const teamFwc = { team: 'fwc', stickers: [...new Array(30)].map((_, i) => ({ number: i, need: true, swap: false })) };
 const teamsData = teams.map(team => ({ team, stickers: generateTeamStickers() }));
 
 export const emptyAlbumData = [
-  fwcData[0],
-  fwcData[1],
-  ...teamsData,
-  fwcData[2]
+  teamFwc,
+  ...teamsData
 ];
 
 export const calculateCompletion = (albumData) => {
@@ -54,7 +58,7 @@ export const calculateCompletion = (albumData) => {
     swap += stickers.filter(sticker => sticker.swap).length;
   });
 
-  const percentage = ((need / total) * 100).toFixed(2);
+  const percentage = (100 - ((need * 100) / total)).toFixed(2);
 
   return { need, total, swap, percentage };
 };

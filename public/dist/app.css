@@ -1,1 +1,170 @@
-@import"https://fonts.googleapis.com/css2?family=Lato:wght@400,500&display=swap";body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}*{font-family:Lato,sans-serif;margin:0;padding:0;box-sizing:content-box;background-color:#f2f2f2}.App{min-height:100vh;display:flex;flex-direction:column}.header{background-color:#8d1c3d;padding:.25rem 0;color:#fff;height:2rem;font-size:1.25rem;font-weight:700;text-align:center}.data-header{background-color:#8d1c3d;position:sticky;top:0;border-bottom:1px solid #000;padding:.5rem 0;display:flex;justify-content:center;text-align:center}@media only screen and (max-width: 600px){.data-header{align-items:center;flex-direction:column}.album-info{display:flex;flex-direction:column}}.album-info{background-color:inherit;flex-direction:column;margin:0 2em}.album-info p,.action-buttons{background-color:inherit;color:#fff;font-weight:700}.action-buttons button{margin:.25rem;padding:.25rem;border-radius:8px;text-transform:uppercase;font-weight:500;background-color:#63a194}.action-buttons button.selected,.action-buttons button:hover{background-color:#b1d0c9}.album-container{padding:1rem 0;margin:0 auto;width:80%;flex:1 1 0}.team{margin:.25rem 0}.sticker-container{display:flex;flex-wrap:wrap}.sticker{background-color:#fff;cursor:pointer;user-select:none;width:2rem;height:2rem;line-height:2rem;text-align:center;border-radius:50%;border:1px solid #000;margin:.25rem}.have{background-color:#63a194}.swap{background-color:#b09677}.footer{width:100%;background-color:#e1c396;text-align:center}
+@import "https://fonts.googleapis.com/css2?family=Lato:wght@400,500&display=swap";
+
+/* src/index.css */
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Courier New",
+    monospace;
+}
+
+/* src/App.css */
+* {
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+  background-color: #f2f2f2;
+}
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  background-color: #8D1C3D;
+  padding: 0.25rem 0;
+  color: #FFF;
+  height: 2rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+.data-header {
+  background-color: #8D1C3D;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #000;
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  .data-header {
+    align-items: center;
+    flex-direction: column;
+  }
+  .album-info {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media only screen and (min-width: 600px) {
+}
+@media only screen and (min-width: 768px) {
+}
+@media only screen and (min-width: 992px) {
+}
+@media only screen and (min-width: 1200px) {
+}
+.album-info {
+  background-color: inherit;
+  flex-direction: column;
+  margin: 0 2em;
+}
+.album-info p,
+.action-buttons {
+  background-color: inherit;
+  color: #FFF;
+  font-weight: bold;
+}
+.action-buttons button {
+  margin: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: 500;
+  background-color: #63A194;
+}
+.action-buttons button.selected,
+.action-buttons button:hover {
+  background-color: #B1D0C9;
+}
+.album-container {
+  padding: 1rem 0;
+  margin: 0 auto;
+  width: 80%;
+  flex: 1 1 0;
+}
+.team {
+  margin: 0.25rem 0;
+}
+.sticker-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sticker {
+  background-color: #FFF;
+  cursor: pointer;
+  user-select: none;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #000;
+  margin: 0.25rem;
+}
+.have {
+  background-color: #63A194;
+}
+.swap {
+  background-color: #B09677;
+}
+.footer {
+  width: 100%;
+  background-color: #E1C396;
+  text-align: center;
+}
+
+/* src/Modal.css */
+.modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background-color: #FFF;
+  width: 60%;
+  padding: 1rem;
+}
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #FFF;
+}
+.modal-footer button {
+  margin: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: 500;
+  background-color: #63A194;
+}

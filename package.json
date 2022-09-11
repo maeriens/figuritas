@@ -1,6 +1,6 @@
 {
   "name": "figuritas",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "build": "node esbuild-build.js",
     "start": "node esbuild-serve.js"
@@ -9,8 +9,5 @@
     "esbuild": "^0.15.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "esbuild-register": "^3.3.3"
   }
 }
