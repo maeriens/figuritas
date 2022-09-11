@@ -7,25 +7,34 @@ const stopPropagation = (e) => e.stopPropagation();
 const ModalComponent = ({ onClose, albumData }) => {
 
   const [value, setValue] = useState('');
-
+  const [mode, setMode] = useState('write');
   const [comparedData, setComparedData] = useState(null);
 
   const handleChange = ({ target }) => setValue(target.value || '')
 
   const onCompare = () => {
     setComparedData(comparar(albumData, value))
+    setMode('comparar')
   }
+
+  const onReset = () => setMode('compare');
+
+  const isCompareScreen = mode === 'comparar';
 
   return (
     <div className='modal' onClick={onClose}>
       <div className='modal-content' onClick={stopPropagation}>
         <div className="modal-header">
           <h2>Cambios</h2>
-          <span>Pegá acá la info que te pasen y esto te va a decir cuáles cambiar</span>
         </div>
         <div className="modal-body">
-          {!comparedData && <textarea value={value} className="compare" onChange={handleChange} />}
-          {comparedData && (
+          {!isCompareScreen && (
+            <div className="results-container" style={{ width: '50%' }}>
+              <h3>Pegá las figus para comparar</h3>
+              <textarea value={value} className="compare" onChange={handleChange} />
+            </div>
+          )}
+          {isCompareScreen && (
             <>
               <div className='result-container'>
                 <h3>PARA DAR: {comparedData[0].length}</h3>
@@ -40,7 +49,8 @@ const ModalComponent = ({ onClose, albumData }) => {
         </div>
         <div className='modal-footer'>
           <button onClick={onClose}>CERRAR</button>
-          <button onClick={onCompare}>COMPARAR</button>
+          {!isCompareScreen && <button disabled={!value.length} onClick={onCompare}>COMPARAR</button>}
+          {isCompareScreen && <button onClick={onReset}>VOLVER ATRÁS</button>}
         </div>
       </div>
     </div>

@@ -23,8 +23,8 @@
     width: 100%;
 }
 
-.modal-body .compare {
-    width: 40%;
+.modal-body textarea {
+    width: 100%;
     height: 25rem;
     resize: none;
     padding: 0.25rem;
@@ -33,13 +33,6 @@
 .modal-body .result-container {
     flex: 1;
     margin: 0.5rem;
-}
-
-.modal-body .result {
-    width: 100%;
-    height: 25rem;
-    resize: none;
-    padding: 0.25rem;
 }
 
 .modal-footer {

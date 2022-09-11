@@ -4,6 +4,7 @@ import "./App.css";
 import { emptyAlbumData, calculateCompletion, fwcGroups, editTeamFwc } from "./albumHelpers";
 import Team from "./Team";
 import Modal from "./Modal";
+import { formatToCopy } from "./clipboardHelper";
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
     updateAlbumData(newAlbumData);
   };
 
+  const exportData = () => navigator.clipboard.writeText(formatToCopy(albumData));
+
   useEffect(() => {
     const body = document.querySelector('body');
     body.style.overflow = openModal ? 'hidden' : 'auto';
@@ -60,6 +63,7 @@ function App() {
           <button onClick={() => setMode(1)} className={mode === 1 ? 'selected' : null}>Faltantes</button>
           <button onClick={() => setMode(2)} className={mode === 2 ? 'selected' : null}>Repetidas</button>
           <button onClick={toggleModal} >Cambiar</button>
+          <button onClick={exportData}>Exportar</button>
         </div>
       </div>
       {openModal && <Modal onClose={toggleModal} albumData={albumData} />}
