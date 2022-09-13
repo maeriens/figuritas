@@ -1,6 +1,8 @@
 node_modules
-# Esbuild thingy
+# esbuild thingy
 public/dist
+
+.vscode
 
 .DS_Store
 *.log

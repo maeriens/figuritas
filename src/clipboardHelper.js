@@ -18,7 +18,7 @@ const formatToCopy = albumData => {
 
   })
 
-  let finalString = 'MISSING: \n' + missingString + '\nREPEATED\n' + swapString
+  let finalString = 'MISSING: \n' + missingString + '\nREPEATED:\n' + swapString
 
   return finalString
 
