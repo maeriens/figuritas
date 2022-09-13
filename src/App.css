@@ -46,6 +46,16 @@
     display: flex;
     flex-direction: column;
   }
+
+  .action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .action-buttons button {
+    width: 33%;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -68,7 +78,6 @@
 
 .album-info p,
 .action-buttons {
-  background-color: inherit;
   color: #FFF;
   font-weight: bold;
 }

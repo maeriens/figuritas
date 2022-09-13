@@ -48,12 +48,12 @@ const ModalComponent = ({ onClose, albumData }) => {
             <h2>iOS</h2>
             <p>Se ve como:</p>
             <div className='example'>
-              I need
-              FWC: 1, 2, 3
-              QAT: 2, 3, 4
-              Swaps
-              FWC: 4, 5
-              QAT: 1
+              <p>I need</p>
+              <p>FWC: 1, 2, 3</p>
+              <p>QAT: 2, 3, 4</p>
+              <p>Swaps</p>
+              <p>FWC: 4, 5</p>
+              <p>QAT: 1</p>
             </div>
           </div>
         </>
@@ -62,7 +62,7 @@ const ModalComponent = ({ onClose, albumData }) => {
 
     if (!isCompareScreen) {
       return (
-        <div className="results-container" style={{ width: '50%' }}>
+        <div className="result-container">
           <h3>Pegá las figus para comparar</h3>
           <textarea id='compare' value={value} className="compare" onChange={handleChange} />
         </div>
@@ -78,7 +78,7 @@ const ModalComponent = ({ onClose, albumData }) => {
           <textarea name="dar" id="dar" className="result" readOnly value={formatComparedData(dar)} />
         </div>
         <div className='result-container'>
-          <h3>PARA RECIBIR {recibir.length}</h3>
+          <h3>PARA RECIBIR: {recibir.length}</h3>
           <textarea name="recibir" id="recibir" className="result" readOnly value={formatComparedData(recibir)} />
         </div>
       </>
@@ -96,8 +96,12 @@ const ModalComponent = ({ onClose, albumData }) => {
         </div>
         <div className='modal-footer'>
           <button onClick={onClose}>CERRAR</button>
-          {!isCompareScreen && <button disabled={!value.length} onClick={onCompare}>COMPARAR</button>}
-          {isCompareScreen && <button onClick={onReset}>VOLVER ATRÁS</button>}
+          {!isPlatformScreen && (
+            <>
+              <button onClick={onReset}>REINICIAR</button>
+              <button className='primary' disabled={!value.length} onClick={onCompare}>COMPARAR</button>
+            </>
+          )}
         </div>
       </div>
     </div>
