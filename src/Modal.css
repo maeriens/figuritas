@@ -81,16 +81,19 @@
     .modal-content {
         max-height: 80%;
         width: 80%;
+        overflow-y: scroll;
     }
 
     .modal-body {
         align-items: center;
         flex-direction: column;
+        overflow-y: scroll;
     }
 
     .platform-selector {
         height: auto;
         padding: 1rem;
+        margin: 0.5rem;
         width: 80%;
     }
 

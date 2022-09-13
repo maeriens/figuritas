@@ -73,13 +73,19 @@ const ModalComponent = ({ onClose, albumData }) => {
 
     return (
       <>
+
         <div className='result-container'>
           <h3>PARA DAR: {dar.length}</h3>
-          <textarea name="dar" id="dar" className="result" readOnly value={formatComparedData(dar)} />
+          {dar.length > 0
+            ? <textarea name="dar" id="dar" className="result" readOnly value={formatComparedData(dar)} />
+            : <p>No tenés figuritas para dar</p>
+          }
         </div>
         <div className='result-container'>
           <h3>PARA RECIBIR: {recibir.length}</h3>
-          <textarea name="recibir" id="recibir" className="result" readOnly value={formatComparedData(recibir)} />
+          {recibir.length > 0
+            ? <textarea name="recibir" id="recibir" className="result" readOnly value={formatComparedData(recibir)} />
+            : <p>No tenés figuritas para recibir</p>}
         </div>
       </>
     )
