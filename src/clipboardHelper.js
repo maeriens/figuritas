@@ -1,4 +1,4 @@
-const formatToCopy = albumData => {
+const formatToCopy = (albumData, category) => {
 
   let missingString = ''
   let swapString = ''
@@ -15,13 +15,21 @@ const formatToCopy = albumData => {
     if (swaps.length) {
       swapString += swaps.map(({ number }) => `${team.toUpperCase()} ${String(number).padStart(2, '0')}`).join(', ') + '\n'
     }
-
   })
 
-  let finalString = 'MISSING: \n' + missingString + '\nREPEATED:\n' + swapString
+  const formattedMissingString = 'MISSING: \n' + missingString
+  const formattedSwapString = 'REPEATED:\n' + swapString
 
-  return finalString
+  if (category === 'faltantes') {
+    return formattedMissingString
+  }
 
+  if (category === 'repetidas') {
+    return formattedSwapString
+  }
+
+
+  return formattedMissingString + '\n' + formattedSwapString
 }
 
 module.exports = { formatToCopy }

@@ -4,15 +4,18 @@ import "./App.css";
 import { emptyAlbumData, calculateCompletion, fwcGroups, editTeamFwc } from "./albumHelpers";
 import Team from "./Team";
 import Modal from "./Modal";
+import ExportModal from "./ExportModal";
 import { formatToCopy } from "./clipboardHelper";
 
 function App() {
 
   const [albumData, setAlbumData] = useState(JSON.parse(localStorage.getItem("albumData")) || emptyAlbumData);
   const [mode, setMode] = useState(0);
-  const [openModal, setOpenModal] = useState(false);
+  const [openCompareModal, setOpenCompareModal] = useState(false);
+  const [openExportModal, setOpenExportModal] = useState(false);
 
-  const toggleModal = () => setOpenModal(!openModal)
+  const toggleCompareModal = () => setOpenCompareModal(!openCompareModal)
+  const toggleExportModal = () => setOpenExportModal(!openExportModal)
 
   const updateAlbumData = (data) => {
     localStorage.setItem("albumData", JSON.stringify(data));
@@ -42,8 +45,8 @@ function App() {
 
   useEffect(() => {
     const body = document.querySelector('body');
-    body.style.overflow = openModal ? 'hidden' : 'auto';
-  }, [openModal])
+    body.style.overflow = (openCompareModal || openExportModal) ? 'hidden' : 'auto';
+  }, [openCompareModal, openExportModal])
 
   const fwcData = fwcGroups.map(({ team, start, end }) => ({ team, stickers: albumData[0].stickers.slice(start, end) }))
   const displayAlbumData = [fwcData[0], fwcData[1], ...albumData.slice(1), fwcData[2]];
@@ -62,11 +65,12 @@ function App() {
           <button onClick={() => setMode(0)} className={mode === 0 ? 'selected' : null}>Todas</button>
           <button onClick={() => setMode(1)} className={mode === 1 ? 'selected' : null}>Faltantes</button>
           <button onClick={() => setMode(2)} className={mode === 2 ? 'selected' : null}>Repetidas</button>
-          <button onClick={toggleModal} >Cambiar</button>
-          <button onClick={exportData}>Exportar</button>
+          <button onClick={toggleCompareModal} >Cambiar</button>
+          <button onClick={toggleExportModal}>Exportar</button>
         </div>
       </div>
-      {openModal && <Modal onClose={toggleModal} albumData={albumData} />}
+      {openCompareModal && <Modal onClose={toggleCompareModal} albumData={albumData} />}
+      {openExportModal && <ExportModal onClose={toggleExportModal} albumData={albumData} />}
       <div className="album-container">
         {displayAlbumData.map(({ team, stickers }) => (
           <Team

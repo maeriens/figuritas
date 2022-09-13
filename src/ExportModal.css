@@ -1,0 +1,34 @@
+.exports-container {
+    width: 80%;
+    margin-top: 1rem;
+}
+
+.box {
+    width: 30%;
+    display: inline-flex;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    margin: 0.25rem;
+    height: 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert {
+    text-align: center;
+    line-height: 1.5rem;
+    height: 1.5rem;
+    justify-content: center;
+    display: flex;
+    margin: 0.25rem 30%;
+}
+
+.copied {
+    background-color: aquamarine;
+}
+
+@media only screen and (max-width: 600px) {
+    .box {
+        width: 100%;
+    }
+}
