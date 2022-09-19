@@ -24,7 +24,7 @@ const groups = {
 export const fwcGroups = [
   { team: 'index', start: 0, end: 8 },
   { team: 'sta', start: 8, end: 19 },
-  { team: 'chp', start: 19, end: 29 }
+  { team: 'chp', start: 19, end: 30 }
 ];
 
 export const editTeamFwc = (teamToSearch, allStickers, newStickers) => {
