@@ -24,8 +24,8 @@ const parseFigusIOS = figus => {
   let repeatedStickers = [];
 
   // Si tiene los dos... missing viene antes. Si está repeated, en teoría están los dos. 
-  const missingIndex = figus.search(/I\sNEED/i);
-  const repeatedIndex = figus.search(/SWAPS/i);
+  const missingIndex = figus.search(/(I\sNEED)|(ME\sFALTAN)/i); 
+  const repeatedIndex = figus.search(/(SWAPS)|(REPETIDAS)/i);
 
   // No dice qué son, debería dar error
   if (missingIndex === -1 && repeatedIndex === -1) {
