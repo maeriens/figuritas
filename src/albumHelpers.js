@@ -10,16 +10,15 @@ export const countryNames = {
   por: 'Portugal', gha: 'Ghana', uru: 'Uruguay', kor: 'Corea del Sur'
 }
 
-const groups = {
-  A: ['qat', 'ecu', 'sen', 'ned'],
-  B: ['eng', 'irn', 'usa', 'wal'],
-  C: ['arg', 'ksa', 'mex', 'pol'],
-  D: ['fra', 'aus', 'den', 'tun'],
-  E: ['esp', 'crc', 'ger', 'jpn',],
-  F: ['bel', 'can', 'mar', 'cro',],
-  G: ['bra', 'srb', 'sui', 'cmr'],
-  H: ['por', 'gha', 'uru', 'kor']
-};
+const teamNamesOrdered = [
+  'qat', 'ecu', 'sen', 'ned',
+  'eng', 'irn', 'usa', 'wal',
+  'arg', 'ksa', 'mex', 'pol',
+  'fra', 'aus', 'den', 'tun',
+  'esp', 'crc', 'ger', 'jpn',
+  'bel', 'can', 'mar', 'cro',
+  'bra', 'srb', 'sui', 'cmr',
+  'por', 'gha', 'uru', 'kor']
 
 export const fwcGroups = [
   { team: 'index', start: 0, end: 8 },
@@ -34,13 +33,11 @@ export const editTeamFwc = (teamToSearch, allStickers, newStickers) => {
   return allStickers;
 }
 
-const teams = Object.values(groups).map(val => [...val]).flat();
-
 const generateTeamStickers = (total = 19) => [...new Array(total)].map((_, i) => ({ number: i + 1, need: true, swap: false }));
 
 // FWC has the 00 sticker included
 const teamFwc = { team: 'fwc', stickers: [...new Array(30)].map((_, i) => ({ number: i, need: true, swap: false })) };
-const teamsData = teams.map(team => ({ team, stickers: generateTeamStickers() }));
+const teamsData = teamNamesOrdered.map(team => ({ team, stickers: generateTeamStickers() }));
 
 export const emptyAlbumData = [
   teamFwc,
@@ -62,3 +59,32 @@ export const calculateCompletion = (albumData) => {
 
   return { need, total, swap, percentage };
 };
+
+export const parseDataToImport = (dataToImport) => {
+
+  const importedAlbumData = [...emptyAlbumData]
+
+  Object.entries(dataToImport).forEach(([team, stickers]) => {
+
+    const { missing, repeated } = stickers;
+
+    const teamIndex = team === 'fwc' ? 0 : teamNamesOrdered.indexOf(team) + 1
+
+    importedAlbumData[teamIndex].stickers = importedAlbumData[teamIndex].stickers.map(({ number }) => {
+
+      if (missing.includes(number)) {
+        // Me falta
+        return { number, need: true, swap: false }
+      } else if (repeated.includes(number)) {
+        // La tengo repetida
+        return { number, need: false, swap: true }
+      } else {
+        // La tengo pero no repetida
+        return { number, need: false, swap: false }
+      }
+
+    })
+  })
+
+  return importedAlbumData
+}

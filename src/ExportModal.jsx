@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './Modal.css';
 import './ExportModal.css';
 import { formatToCopy } from './clipboardHelper';
 

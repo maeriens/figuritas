@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { comparar, formatComparedData } from './comparar';
-import './Modal.css';
+import './CompareModal.css';
 
 const stopPropagation = (e) => e.stopPropagation();
 
-const ModalComponent = ({ onClose, albumData }) => {
+const CompareModal = ({ onClose, albumData }) => {
 
   const [value, setValue] = useState('');
   const [platform, setPlatform] = useState(null);
@@ -114,4 +114,4 @@ const ModalComponent = ({ onClose, albumData }) => {
   )
 }
 
-export default ModalComponent
+export default CompareModal

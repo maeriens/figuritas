@@ -3,9 +3,10 @@ import "./App.css";
 
 import { emptyAlbumData, calculateCompletion, fwcGroups, editTeamFwc } from "./albumHelpers";
 import Team from "./Team";
-import Modal from "./Modal";
+import CompareModal from "./CompareModal";
 import ExportModal from "./ExportModal";
 import { formatToCopy } from "./clipboardHelper";
+import ImportModal from "./ImportModal";
 
 function App() {
 
@@ -13,9 +14,11 @@ function App() {
   const [mode, setMode] = useState(0);
   const [openCompareModal, setOpenCompareModal] = useState(false);
   const [openExportModal, setOpenExportModal] = useState(false);
+  const [openImportModal, setOpenImportModal] = useState(false);
 
   const toggleCompareModal = () => setOpenCompareModal(!openCompareModal)
   const toggleExportModal = () => setOpenExportModal(!openExportModal)
+  const toggleImportModal = () => setOpenImportModal(!openImportModal)
 
   const updateAlbumData = (data) => {
     localStorage.setItem("albumData", JSON.stringify(data));
@@ -41,8 +44,6 @@ function App() {
     updateAlbumData(newAlbumData);
   };
 
-  const exportData = () => navigator.clipboard.writeText(formatToCopy(albumData));
-
   useEffect(() => {
     const body = document.querySelector('body');
     body.style.overflow = (openCompareModal || openExportModal) ? 'hidden' : 'auto';
@@ -67,10 +68,12 @@ function App() {
           <button onClick={() => setMode(2)} className={mode === 2 ? 'selected' : null}>Repetidas</button>
           <button onClick={toggleCompareModal} >Cambiar</button>
           <button onClick={toggleExportModal}>Exportar</button>
+          <button onClick={toggleImportModal}>Importar</button>
         </div>
       </div>
-      {openCompareModal && <Modal onClose={toggleCompareModal} albumData={albumData} />}
+      {openCompareModal && <CompareModal onClose={toggleCompareModal} albumData={albumData} />}
       {openExportModal && <ExportModal onClose={toggleExportModal} albumData={albumData} />}
+      {openImportModal && <ImportModal onClose={toggleImportModal} updateAlbumData={updateAlbumData} />}
       <div className="album-container">
         {displayAlbumData.map(({ team, stickers }) => (
           <Team

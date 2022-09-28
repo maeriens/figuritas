@@ -24,7 +24,7 @@ const parseFigusIOS = figus => {
   let repeatedStickers = [];
 
   // Si tiene los dos... missing viene antes. Si está repeated, en teoría están los dos. 
-  const missingIndex = figus.search(/(I\sNEED)|(ME\sFALTAN)/i); 
+  const missingIndex = figus.search(/(I\sNEED)|(ME\sFALTAN)/i);
   const repeatedIndex = figus.search(/(SWAPS)|(REPETIDAS)/i);
 
   // No dice qué son, debería dar error
@@ -125,13 +125,18 @@ const parseFigusAndroid = (figus) => {
   return parsed;
 }
 
+const parsearAlbum = (platform, albumDelOtro) =>
+  platform === 'android'
+    ? parseFigusAndroid(albumDelOtro)
+    : parseFigusIOS(albumDelOtro);
+
 const comparar = (miAlbum, albumDelOtro, platform) => {
 
   // album del otro que sea { "equipo": { repeated: [01, 02], missing: [03, 04] }}.
   const dar = []
   const recibir = []
 
-  const parsedAlbumDelOtro = platform === 'android' ? parseFigusAndroid(albumDelOtro) : parseFigusIOS(albumDelOtro);
+  const parsedAlbumDelOtro = parsearAlbum(platform, albumDelOtro);
 
   // Por cada info de mis figus
   miAlbum.forEach(({ team, stickers }) => {
@@ -149,7 +154,7 @@ const comparar = (miAlbum, albumDelOtro, platform) => {
       }
     })
   })
-  
+
   return { dar, recibir }
 };
 
@@ -169,4 +174,4 @@ const formatComparedData = (data) => {
   return str.trim();
 }
 
-module.exports = { comparar, formatComparedData }
+module.exports = { comparar, formatComparedData, parsearAlbum }
