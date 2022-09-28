@@ -55,7 +55,7 @@ const ImportModal = ({ onClose, updateAlbumData }) => {
 
     return (
       <div className="result-container">
-        <div className='warning-box'>CUIDADO: ESTO VA A REEMPLAZAR TODOS LOS DATOS DE ESTA PÁGINA Y NO PUEDE REVERTIRSE</div>
+        <div className='warning-box'>CUIDADO: ESTO VA A SOBREESCRIBIR TODOS LOS DATOS DE ESTA PÁGINA Y NO PUEDE REVERTIRSE</div>
         <h3>Pegá las figus para importar</h3>
         <textarea id='compare' value={value} className="compare" onChange={handleChange} />
       </div>
