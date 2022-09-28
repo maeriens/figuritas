@@ -70,6 +70,7 @@
     border-radius: 8px;
     text-transform: uppercase;
     font-weight: 500;
+    color: #000;
 }
 
 .modal-footer .primary {
