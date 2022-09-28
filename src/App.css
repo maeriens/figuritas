@@ -56,6 +56,10 @@
   .action-buttons button {
     width: 33%;
   }
+
+  textarea {
+    font-size: 16px !important;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
